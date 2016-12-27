@@ -1,73 +1,47 @@
-	!模块StrNum.F90的代码如下:
-
 	!------------------------------------------------------------
 	!---StrNum.F90:提供字符串,数字和文本文件处理的功能子程序
 	!---吴徐平2013-07-22(wxp07@qq.com)
 	!------------------------------------------------------------
 	module StrNum
-	!----------------------------------------------
 	implicit none
-	!----------------------------------------------
-	!---字符串转换为数字数StrToNum(InStr,Num,Error)
-	interface StrToNum
+	interface StrToNum				!---字符串转换为数字数StrToNum(InStr,Num,Error)
 	module procedure StrToReal4
 	module procedure StrToReal8
 	module procedure StrToInteger1
 	module procedure StrToInteger2
 	module procedure StrToInteger4
 	end interface
-	!----------------------------------------------
-	!---保留InStr中的浮点数相关的字符,其它字符全部变为空格KeepRealChar(InStr)
-	interface KeepRealChar
+	interface KeepRealChar			!---保留InStr中的浮点数相关的字符,其它字符全部变为空格KeepRealChar(InStr)
 	module procedure KeepRealChar
 	end interface
-	!----------------------------------------------
-	!---保留InStr中的浮点数相关的字符,其它字符全部变为空格KeepNumChar(InStr)
-	interface KeepNumChar
+	interface KeepNumChar			!---保留InStr中的浮点数相关的字符,其它字符全部变为空格KeepNumChar(InStr)
 	module procedure KeepNumChar
 	end interface
-	!----------------------------------------------
-	!---识别InStr中左右有效可见字符(33-126)的索引TrimIndex(InStr,LeftIndex,RightIndex,Error)
-	interface TrimIndex
+	interface TrimIndex				!---识别InStr中左右有效可见字符(33-126)的索引TrimIndex(InStr,LeftIndex,RightIndex,Error)
 	module procedure TrimIndex
 	end interface
-	!----------------------------------------------
-	!---字符串分割StringSplit(InStr,delimiter,StrArray,nsize)
-	interface StringSplit
+	interface StringSplit			!---字符串分割StringSplit(InStr,delimiter,StrArray,nsize)
 	module procedure StringSplit
 	end interface
-	!----------------------------------------------
-	!---字符串替换StrReplace(InStr,OldChar,NewChar,OutStr)
-	interface StrReplace
+	interface StrReplace			!---字符串替换StrReplace(InStr,OldChar,NewChar,OutStr)
 	module procedure StrReplace
 	end interface
-	!----------------------------------------------
-	!---字符串变为浮点数组StrToRealArray(InStr,RealArray,nsize)
-	interface StrToRealArray
+	interface StrToRealArray		!---字符串变为浮点数组StrToRealArray(InStr,RealArray,nsize)
 	module procedure StrToRealArray4
 	module procedure StrToRealArray8
 	end interface
-	!----------------------------------------------
-	!---测试字符串是否可以转为RealArray数组:IsRealArrayString(InStr,Error)
-	interface IsRealArrayString
+	interface IsRealArrayString		!---测试字符串是否可以转为RealArray数组:IsRealArrayString(InStr,Error)
 	module procedure IsRealArrayString
 	end interface
-	!----------------------------------------------
-	!---获取文本文件FileName行列信息:GetFileRowColumn(FileName,HeadLine,Row,Column)
-	interface GetFileRowColumn
+	interface GetFileRowColumn		!---获取文本文件FileName行列信息:GetFileRowColumn(FileName,HeadLine,Row,Column)
 	module procedure GetFileRowColumn
 	end interface
-	!----------------------------------------------
-	!---文件数据的读取LoadFromFile(FileName,Array2D,Row,Column,Error)
-	interface LoadFromFile
+	interface LoadFromFile			!---文件数据的读取LoadFromFile(FileName,Array2D,Row,Column,Error)
 	module procedure LoadFromFile4
 	module procedure LoadFromFile8
 	end interface
-	!----------------------------------------------
-	!**********************************************************
+	!------------------------------------------------------------
 	contains
-	!**********************************************************
-	!=============================================================
 	subroutine StrToReal4(InStr,Num,Error)
 	!------------------------------------------------------------
 	!---将字符串InStr转为Num数字类型
@@ -99,8 +73,7 @@
 	end if
 	!-----------------
 	end subroutine StrToReal4
-	!
-	!=============================================================
+
 	subroutine StrToReal8(InStr,Num,Error)
 	!------------------------------------------------------------
 	!---将字符串InStr转为Num数字类型
@@ -132,9 +105,7 @@
 		Error=Error+1
 	end if
 	end subroutine StrToReal8
-	!
-	!=============================================================
-	!=============================================================
+
 	subroutine StrToInteger1(InStr,Num,Error)
 	!------------------------------------------------------------
 	!---将字符串InStr转为Num数字类型
@@ -166,8 +137,7 @@
 		Error=Error+1
 	end if
 	end subroutine StrToInteger1
-	!
-	!=============================================================
+
 	subroutine StrToInteger2(InStr,Num,Error)
 	!------------------------------------------------------------
 	!---将字符串InStr转为Num数字类型
@@ -201,8 +171,7 @@
 
 	!-----------------
 	end subroutine StrToInteger2
-	!
-	!=============================================================
+
 	subroutine StrToInteger4(InStr,Num,Error)
 	!------------------------------------------------------------
 	!---将字符串InStr转为Num数字类型
@@ -235,8 +204,7 @@
 		Error=Error+1
 	end if
 	end subroutine StrToInteger4
-	!
-	!=============================================================
+
 	subroutine KeepRealChar(InStr)
 	!------------------------------------------------------------
 	!---保留InStr中的浮点数相关的字符,其它字符全部变为空格
@@ -351,7 +319,7 @@
 	end do
 	!------------------------------------------------------------
 	end subroutine KeepRealChar
-	!=============================================================
+
 	subroutine KeepNumChar(InStr)
 	!------------------------------------------------------------
 	!---保留InStr中的数字字符,其它字符全部变为空格
@@ -382,7 +350,7 @@
 	end do
 	!------------------------------------------------------------
 	end subroutine KeepNumChar
-	!=============================================================
+
 	subroutine TrimIndex(InStr,LeftIndex,RightIndex,Error)
 	!------------------------------------------------------------
 	!---识别InStr中左右有效可见字符(33-126)的索引
@@ -422,9 +390,8 @@
 		Error=-1 !-字符串全部为空格或是空字符串
 	end if
 	end subroutine TrimIndex
-	!=============================================================
+
 	subroutine StringSplit(InStr,delimiter,StrArray,nsize)
-	!----------------------------------------------
 	!---将字符串InStr进行分割,结果放入StrArray中
 	!---delimiter::分隔符号,例如';,,' 使用;和,分割字符串
 	!---nsize:分割数目
@@ -466,8 +433,7 @@
 		StrArray(1)=InStr
 	end if
 	end subroutine StringSplit
-	!
-	!=============================================================
+
 	subroutine StrReplace(InStr,OldChar,NewChar,OutStr)
 	!------------------------------------------------------------
 	!---将字符串InStr中的字符串OldChar替换成NewChar
@@ -487,8 +453,7 @@
 		i=INDEX(OutStr,OldChar)
 	end do
 	end subroutine StrReplace
-	!------------------------------------------------------------
-	!=============================================================
+
 	subroutine StrToRealArray4(InStr,RealArray,nsize)
 	!------------------------------------------------------------
 	Implicit None
@@ -520,7 +485,7 @@
 	nsize=j
 	!------------------------------------------------------
 	end subroutine StrToRealArray4
-	!=============================================================
+
 	subroutine StrToRealArray8(InStr,RealArray,nsize)
 	!------------------------------------------------------------
 	Implicit None
@@ -553,8 +518,7 @@
 	nsize=j
 	!------------------------------------------------------
 	end subroutine StrToRealArray8
-	!=============================================================
-	!=============================================================
+
 	subroutine IsRealArrayString(InStr,Error)
 	!------------------------------------------------------------
 	!---测试字符串InStr转为RealArray类型的数组
@@ -578,8 +542,7 @@
 	end if
 	!------------------------------------------------------
 	end subroutine IsRealArrayString
-	!
-	!=============================================================
+
 	subroutine GetFileRowColumn(FileName,HeadLine,Row,Column)
 	!------------------------------------------------------------
 	!---获取文本文件FileName的行数Row
@@ -638,8 +601,7 @@
 	close(9001)
 	!---------------------------------------------
 	end subroutine GetFileRowColumn
-	!
-	!=============================================================
+
 	subroutine LoadFromFile4(FileName,Array2D,Row,Column,Error)
 	!------------------------------------------------------------
 	!---获取文本文件FileName的数据
@@ -713,9 +675,7 @@
 	end if
 	!---------------------------------------
 	end subroutine LoadFromFile4
-	!
-	!=============================================================
-	!=============================================================
+
 	subroutine LoadFromFile8(FileName,Array2D,Row,Column,Error)
 	!------------------------------------------------------------
 	!---获取文本文件FileName的数据
@@ -789,70 +749,5 @@
 	end if
 	!---------------------------------------
 	end subroutine LoadFromFile8
-	!
-	!=============================================================
-	end module StrNum
-	
-	subroutine StringSplit(InStr,delimiter,StrArray,nsize)
-	!----------------------------------------------
-	!---将字符串InStr进行分割,结果放入StrArray中
-	!---delimiter::分隔符号,例如';,,' 使用;和,分割字符串
-	!---nsize:分割数目
-	!---吴徐平2011-04-29(wxp07@qq.com)
-	!----------------------------------------------
-	implicit none
-	character(len = *) , Intent( IN ) :: InStr
-	character(len = *)  , Intent( IN ) :: delimiter
-	character(len = LEN(InStr)),dimension(LEN(InStr)),Intent( OUT ) :: StrArray
-	integer, Intent( OUT ) :: nsize ! Effective Size of StrArray
-	integer:: i,j ! loop variable
-	integer:: istart ! split index for Start Position
-	nsize=0
-	istart=1
-	do i=1,LEN(InStr)
-		do j=1,LEN(delimiter)
-			if (InStr(i:i) == delimiter(j:j)) then
-				if (istart == i) then
-					istart=i+1 ! ---可防止分隔符相连的情况
-				end if
-				if (istart<i) then
-					nsize=nsize+1
-					StrArray(nsize)=InStr(istart:i-1)
-					istart=i+1
-				end if
-			end if
-		end do
-	end do
-	! ---匹配最后一个子字符串
-	if (nsize>0) then
-		if (istart<LEN(InStr)) then
-			nsize=nsize+1
-			StrArray(nsize)=InStr(istart:LEN(InStr))
-		end if
-	end if
-	! ---如果无可分割的子字符串,则包含整个字符串为数组的第一元素
-	if ( (nsize<1) .AND. (LEN(TRIM(InStr)) > 0 )) then
-		nsize=1
-		StrArray(1)=InStr
-	end if
-	end subroutine StringSplit
 
-	subroutine StrReplace(InStr,OldChar,NewChar,OutStr)
-	!------------------------------------------------------------
-	!---将字符串InStr中的字符串OldChar替换成NewChar
-	!---结果放入字符串OutStr中
-	!---吴徐平2013-07-20(wxp07@qq.com)
-	!------------------------------------------------------------
-	implicit none
-	character(len = *) , Intent( IN ) :: InStr
-	character(len = *) , Intent( IN ) :: OldChar
-	character(len = LEN(OldChar)) , Intent( IN ) ::NewChar
-	character(len = LEN(InStr)) , Intent( INOUT ) :: OutStr
-	integer :: i  ! loop variable
-	OutStr=InStr
-	i=INDEX(OutStr,OldChar)
-	do while(i>0)
-		OutStr(i:i+LEN(OldChar)-1)=NewChar
-		i=INDEX(OutStr,OldChar)
-	end do
-	end subroutine StrReplace
+	end module StrNum
